@@ -1,0 +1,22 @@
+{
+    "parser": "babel-eslint",
+    "extends": "google",
+    "rules": {
+        "strict": 0,
+        "linebreak-style": 0,
+        "require-jsdoc": ["error", {
+          "require": {
+              "FunctionDeclaration": true,
+              "MethodDefinition": false,
+              "ClassDeclaration": false,
+              "ArrowFunctionExpression": false,
+              "FunctionExpression": false
+          }
+        }]
+        },
+    "plugins": [
+        "react",
+        "jsx-a11y",
+        "import"
+    ]
+}
