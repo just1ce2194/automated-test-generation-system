@@ -11,6 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import SvgIcon from '@material-ui/core/SvgIcon';
 
 const title = 'Система автоматизовної генерації тестів';
 
@@ -28,6 +29,14 @@ const styles = {
       marginRight: 20,
     },
   };
+
+const HomeIcon = (props) => {
+    return (
+        <SvgIcon {...props}>
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+        </SvgIcon>
+    );
+};
 
 class Header extends Component {
     constructor( props ) {
@@ -82,7 +91,6 @@ class Header extends Component {
                     }}
                     open={isMenuOpen}
                     onClose={this.handleClose}>
-                    <MenuItem onClick={this.handleClose}>Профайл</MenuItem>
                     <MenuItem onClick={this.props.logOut}>Вийти</MenuItem>
                 </Menu>
             </div> :
@@ -92,7 +100,8 @@ class Header extends Component {
         return <AppBar position="static">
             <Toolbar>
             <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                <MenuIcon onClick={this.onDashboardIconClick} />
+                <HomeIcon
+                    onClick={this.onDashboardIconClick} />
             </IconButton>
             <Typography variant="title" color="inherit" className={classes.flex}>
                 {title}
