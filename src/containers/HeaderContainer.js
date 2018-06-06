@@ -1,18 +1,20 @@
 import {Header} from '../components';
 import {connect} from 'react-redux';
 
-// import * as VariantsListActions from '../actions/VariantsListActions';
+import * as VisibleUserActions from '../actions/VisibleUserActions';
 
 const mapStateToProps = ( state ) => {
     return ( {
-        // variants: state.variantsList.variants,
+        user: state.visibleUser,
     } );
 };
 
 const mapDispatchToProps = ( dispatch, ownProps ) => {
     return {
-        // fetchVariantsList: () => {
-        //     dispatch( VariantsListActions.fetchVariants() );
+        logOut: () => {
+            // TODO : redirect to login page
+            dispatch( VisibleUserActions.logOut() );
+        },
     };
 };
 
