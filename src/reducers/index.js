@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux';
 
-import variantsList from './VariantsList';
+import dashboard from './Dashboard';
 import variant from './Variant';
 import visibleUser from './VisibleUser';
 
 const rootReducer = combineReducers({
-    variantsList,
+    dashboard,
     variant,
     visibleUser,
 });

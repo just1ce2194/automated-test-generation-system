@@ -1,18 +1,18 @@
 import React from 'react';
-import {VariantsListContainer, HeaderContainer} from '../containers';
+import {DashboardContainer, HeaderContainer} from '../containers';
 import { withRouter } from 'react-router-dom';
 
 const {Component} = React;
 
-class VariantsListPage extends Component {
+class DashboardPage extends Component {
     render() {
         return (
             <div>
                 <HeaderContainer />
-                <VariantsListContainer />
+                <DashboardContainer />
             </div>
         );
     }
 }
 
-export default withRouter( VariantsListPage );
+export default withRouter( DashboardPage );

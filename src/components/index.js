@@ -1,6 +1,6 @@
-import VariantsList from './VariantsList';
+import Dashboard from './Dashboard';
 import Variant from './Variant';
 import Header from './Header';
 import Login from './Login';
 
-export {VariantsList, Variant, Header, Login};
+export {Dashboard, Variant, Header, Login};

@@ -1,8 +1,8 @@
-import VariantsListContainer from './VariantsListContainer';
+import DashboardContainer from './DashboardContainer';
 import VariantContainer from './VariantContainer';
 import HeaderContainer from './HeaderContainer';
 import LoginContainer from './LoginContainer';
 
-export {VariantsListContainer, VariantContainer, HeaderContainer, LoginContainer};
+export {DashboardContainer, VariantContainer, HeaderContainer, LoginContainer};
 
 

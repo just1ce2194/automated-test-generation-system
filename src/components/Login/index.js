@@ -43,19 +43,7 @@ class Login extends Component {
         });
     }
 
-    componentWillMount() {
-        if ( this.props.loggedIn ) {
-            window.location.href = '/variant';
-        }
-    }
-
     render() {
-        if ( this.props.loggedIn ) {
-            return <div className="loginContainer">
-                Logged in. Redirecting...
-                </div>;
-        }
-
         return <div className="loginContainer">
             <div>
                 <TextField

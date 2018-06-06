@@ -1,5 +1,5 @@
-import VariantsListPage from './VariantsListPage';
+import DashboardPage from './DashboardPage';
 import VariantPage from './VariantPage';
 import LoginPage from './LoginPage';
 
-export {VariantsListPage, VariantPage, LoginPage};
+export {DashboardPage, VariantPage, LoginPage};

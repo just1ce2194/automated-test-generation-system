@@ -18,19 +18,21 @@ export const answerChanged = ( questionId, answer ) => {
     };
 };
 
-export const fetchVariant = () => {
+export const fetchVariant = (testId) => {
     return ( dispatch ) => {
+        const data = {
+            testId,
+        };
         const onSuccess = ( response ) => {
             const variant = deserializeVariant( response );
             dispatch(variantChanged( variant ));
         };
 
-        const onError = ( error ) =>
-        {
+        const onError = ( error ) => {
             debugger;
         };
 
-        return FetchUtil.fetchWrapper( VARIANT_URL, null, onSuccess, onError );
+        return FetchUtil.fetchWrapper( VARIANT_URL, data, onSuccess, onError );
     };
 };
 

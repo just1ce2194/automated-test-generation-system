@@ -10,9 +10,10 @@ const mapStateToProps = ( state ) => {
 };
 
 const mapDispatchToProps = ( dispatch, ownProps ) => {
+    const {testId} = ownProps;
     return {
         fetchVariant: () => {
-            dispatch( VariantActions.fetchVariant() );
+            dispatch( VariantActions.fetchVariant(testId) );
         },
         onAnswerChange: ( questionId, answer ) => {
             dispatch( VariantActions.answerChanged( questionId, answer ) );

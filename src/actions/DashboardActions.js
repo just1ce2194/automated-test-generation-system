@@ -13,7 +13,6 @@ export const variantsListChanged = ( variants ) => {
 export const fetchVariants = () => {
     return ( dispatch ) => {
         const onSuccess = ( response ) => {
-            debugger;
             const variants = deserializeVariants( response );
             dispatch(variantsListChanged( variants ));
         };

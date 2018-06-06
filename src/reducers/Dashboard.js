@@ -4,7 +4,7 @@ const initialState = {
     variants: [],
 };
 
-const variantsList = ( state = initialState, action ) => {
+const dashboard = ( state = initialState, action ) => {
     switch ( action.type ) {
         case VARIANTS_LIST_CHANGED:
             return Object.assign({}, state, {
@@ -15,4 +15,4 @@ const variantsList = ( state = initialState, action ) => {
     }
 };
 
-export default variantsList;
+export default dashboard;

@@ -18,7 +18,7 @@ export const logIn = ( username, password ) => {
         if ( response.authenticated ) {
             window.localStorage.setItem( 'userName', response.user.name );
             window.localStorage.setItem( 'role', response.user.role );
-            window.location.href = '/variant';
+            window.location.href = '/dashboard';
             // TODO: redirect to dashboard
         }
     };

@@ -5,7 +5,6 @@ import * as VisibleUserActions from '../actions/VisibleUserActions';
 
 const mapStateToProps = ( state ) => {
     return ( {
-        loggedIn: state.visibleUser.loggedIn,
     } );
 };
 

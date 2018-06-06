@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
+const title = 'Система автоматизовної генерації тестів';
 
 const {Component} = React;
 
@@ -46,7 +47,11 @@ class Header extends Component {
 
     handleClose() {
         this.setState({anchorEl: null});
-    };
+    }
+
+    onDashboardIconClick() {
+        window.location.href = '/dashboard';
+    }
 
     render() {
         const {classes} = this.props;
@@ -87,10 +92,10 @@ class Header extends Component {
         return <AppBar position="static">
             <Toolbar>
             <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                <MenuIcon />
+                <MenuIcon onClick={this.onDashboardIconClick} />
             </IconButton>
             <Typography variant="title" color="inherit" className={classes.flex}>
-                Title
+                {title}
             </Typography>
             {
                 visibleUser.loggedIn ?

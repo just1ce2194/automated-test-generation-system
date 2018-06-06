@@ -1,5 +1,5 @@
 // ------------------------------------
-// Variants List actions
+// Dashboard actions
 // ------------------------------------
 export const VARIANTS_LIST_CHANGED = 'VARIANTS_LIST_CHANGED';
 
