@@ -12,8 +12,7 @@ const mapStateToProps = ( state ) => {
 const mapDispatchToProps = ( dispatch, ownProps ) => {
     return {
         logOut: () => {
-            // TODO : redirect to login page
-            dispatch( VisibleUserActions.logOut() );
+            VisibleUserActions.logOut();
         },
     };
 };

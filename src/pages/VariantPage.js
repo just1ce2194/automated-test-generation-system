@@ -1,5 +1,6 @@
 import React from 'react';
 import {VariantContainer, HeaderContainer} from '../containers';
+import { withRouter } from 'react-router-dom';
 
 const {Component} = React;
 
@@ -16,4 +17,4 @@ class VariantPage extends Component {
     }
 }
 
-export default VariantPage;
+export default withRouter( VariantPage );

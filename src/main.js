@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store';
-import {VariantsListPage, VariantPage} from './pages';
+import {VariantsListPage, VariantPage, LoginPage} from './pages';
 import {Provider} from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 import styles from './styles.scss';
@@ -18,6 +18,7 @@ const routes = (
     <div>
         <Route exact path='/' component={VariantsListPage} />
         <Route path='/variant' component={VariantPage} />
+        <Route path='/login' component={LoginPage} />
     </div>
 );
 

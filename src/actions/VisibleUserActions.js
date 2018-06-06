@@ -1,14 +1,25 @@
-import * as types from '../constants/ActionTypes';
-
-export const logIn = ( user ) => {
-    return {
-        type: types.LOG_IN,
-        user,
-    };
+export const logOut = () => {
+    localStorage.removeItem('userName');
+    localStorage.removeItem('role');
+    window.location.href = '/login';
 };
 
-export const logOut = () => {
-    return {
-        type: types.LOG_OUT,
+export const logIn = ( username, password ) => {
+    return ( dispatch ) => {
+        // TODO : send request to server
+        const response = {
+            authenticated: true,
+            user: {
+                name: 'Denys',
+                role: 'admin',
+            },
+        };
+
+        if ( response.authenticated ) {
+            window.localStorage.setItem( 'userName', response.user.name );
+            window.localStorage.setItem( 'role', response.user.role );
+            window.location.href = '/variant';
+            // TODO: redirect to dashboard
+        }
     };
 };
