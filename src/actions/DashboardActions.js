@@ -3,6 +3,7 @@ import FetchUtil from '../utils/FetchUtil';
 
 const TRAINING_TESTS_LIST_URL = 'http://192.168.0.102:8082/api/tests/training';
 const CONTROL_TESTS_LIST_URL = 'http://192.168.0.102:8082/api/tests/control';
+const UPLOAD_CONFIG_URL = 'http://192.168.0.102:8082/api/tests/control';
 
 export const trainingTestsListChanged = ( tests ) => {
     return {
@@ -41,6 +42,15 @@ export const fetchControlTests = () => {
             null, onSuccess, null );
     };
 };
+
+export const uploadConfig = ( file, onSuccess, onError ) => {
+    return ( dispatch ) => {
+        debugger;
+        return FetchUtil.uploadFile( UPLOAD_CONFIG_URL,
+            file, onSuccess, onError );
+    };
+};
+
 
 const deserializeTrainigTests = ( response ) => {
     return response.map( ( test ) => {

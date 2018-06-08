@@ -41,24 +41,19 @@ const fetchWrapper = (url, data = {}, onSuccess, onError,
             } );
 };
 
-const fetchPostWrapper = (url, data = {}, onSuccess, onError,
+const uploadFile = (url, file = {}, onSuccess, onError,
     fetchStarted, fetchDone) => {
         fetchStarted && fetchStarted();
 
+        const data = new FormData();
+        data.append('file', file);
+
         fetch( url, {
-                body: JSON.stringify(data), // must match 'Content-Type' header
-                // credentials: 'same-origin', // include, same-origin, *omit
-                headers: {
-                    'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8',
-                    'authorization': 'Basic RkRYY2p0akA4c3FxOlhZN2ttem9OemwxMDA=',
-                    // 'Accept': 'application/json',
-                },
+                body: data,
+                headers: getHeaders(),
                 method: 'post',
-                // redirect: 'follow', // manual, *follow, error
-                // referrer: 'no-referrer', // *client, no-referrer
             })
             .then( ( response ) => {
-                console.log( response );
                 if ( response.ok ) {
                     return response.json();
                 } else if ( !response.ok && onError ) {
@@ -75,6 +70,6 @@ const fetchPostWrapper = (url, data = {}, onSuccess, onError,
             } );
 };
 
-const FetchUtil = {fetchWrapper, fetchPostWrapper};
+const FetchUtil = {fetchWrapper, uploadFile};
 
 export default FetchUtil;

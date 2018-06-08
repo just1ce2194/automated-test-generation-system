@@ -9,6 +9,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import { Link } from 'react-router-dom';
+import StudentDashboard from './StudentDashboard';
+import TeacherDashboard from './TeacherDashboard';
+import AdminDashboard from './AdminDashboard';
+import roles from '../../constants/Roles';
 
 const {Component} = React;
 
@@ -17,72 +21,19 @@ class Dashboard extends Component {
         super( props );
     }
 
-    componentWillMount() {
-        this.props.fetchTrainingTests();
-        this.props.fetchControlTests();
-    }
-
     render() {
-        const {trainingTests, controlTests} = this.props;
-
-        return <div className="contentWrapper">
-            <div className="dashboard">
-                {
-                    trainingTests.length !==0 ? <div>
-                        <Typography variant="title">
-                            Тренувальні тести:
-                        </Typography>
-                        <List component="nav">
-                            {
-                                trainingTests.map( ( test ) => {
-                                    return <Link
-                                        to={'/variant/' + test.testId}
-                                        key={test.testId}>
-                                        <ListItem
-                                            button>
-                                            <ListItemIcon>
-                                                <InboxIcon />
-                                            </ListItemIcon>
-                                            <ListItemText primary={test.testName} />
-                                        </ListItem>
-                                    </Link>;
-                                } )
-                            }
-                        </List>
-                    </div> : null
-                }
-                {
-                    controlTests.length !==0 ? <div>
-                        <Typography variant="title">
-                            Контрольні тести:
-                        </Typography>
-                        <List component="nav">
-                            {
-                                controlTests.map( ( test ) => {
-                                    return <Link
-                                        to={'/variant/' + test.testId}
-                                        key={test.testId}>
-                                        <ListItem
-                                            button>
-                                            <ListItemIcon>
-                                                <InboxIcon />
-                                            </ListItemIcon>
-                                            <ListItemText primary={test.testName} />
-                                        </ListItem>
-                                    </Link>;
-                                } )
-                            }
-                        </List>
-                    </div> : null
-                }
-            </div>
-        </div>;
+        switch ( this.props.userRole ) {
+            case roles.student:
+                return <StudentDashboard {...this.props} />;
+            case roles.teacher:
+                return <TeacherDashboard {...this.props} />;
+            case roles.admin:
+                return <AdminDashboard {...this.props} />;
+            default:
+                return null;
+        }
     }
 }
-
-Dashboard.propTypes = {
-    variants: PropTypes.array,
-};
 
 export default Dashboard;
 

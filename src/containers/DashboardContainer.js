@@ -7,6 +7,7 @@ const mapStateToProps = ( state ) => {
     return ( {
         trainingTests: state.dashboard.trainingTests,
         controlTests: state.dashboard.controlTests,
+        userRole: state.visibleUser.role,
     } );
 };
 
@@ -17,6 +18,9 @@ const mapDispatchToProps = ( dispatch, ownProps ) => {
         },
         fetchControlTests: () => {
             dispatch( DashboardActions.fetchControlTests() );
+        },
+        uploadConfig: ( file, onSuccess, onError ) => {
+            dispatch( DashboardActions.uploadConfig( file, onSuccess, onError ) );
         },
     };
 };
