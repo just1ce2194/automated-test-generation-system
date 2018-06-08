@@ -1,33 +1,61 @@
 import * as types from '../constants/ActionTypes';
 import FetchUtil from '../utils/FetchUtil';
 
-const VARIANTS_LIST_URL = 'http://192.168.0.102:8080/automated_test_generation/configList';
+const TRAINING_TESTS_LIST_URL = 'http://192.168.0.102:8082/api/tests/training';
+const CONTROL_TESTS_LIST_URL = 'http://192.168.0.102:8082/api/tests/control';
 
-export const variantsListChanged = ( variants ) => {
+export const trainingTestsListChanged = ( tests ) => {
     return {
-        type: types.VARIANTS_LIST_CHANGED,
-        variants: variants,
+        type: types.TRAINING_TESTS_LIST_CHANGED,
+        tests: tests,
     };
 };
 
-export const fetchVariants = () => {
+export const controlTestsListChanged = ( tests ) => {
+    return {
+        type: types.CONTROL_TESTS_LIST_CHANGED,
+        tests: tests,
+    };
+};
+
+export const fetchTrainingTests = () => {
     return ( dispatch ) => {
         const onSuccess = ( response ) => {
-            const variants = deserializeVariants( response );
-            dispatch(variantsListChanged( variants ));
+            const tests = deserializeTrainigTests( response );
+            dispatch(trainingTestsListChanged( tests ));
         };
 
-        const onError = ( error ) =>
-        {
-            debugger;
-        };
-
-        return FetchUtil.fetchWrapper( VARIANTS_LIST_URL,
-            null, onSuccess, onError );
+        return FetchUtil.fetchWrapper( TRAINING_TESTS_LIST_URL,
+            null, onSuccess, null );
     };
 };
 
-const deserializeVariants = ( response ) => {
-    // TODO : change deserialize when response will be changed
-    return response;
+export const fetchControlTests = () => {
+    return ( dispatch ) => {
+        const onSuccess = ( response ) => {
+            const tests = deserializeControlTests( response );
+            dispatch(controlTestsListChanged( tests ));
+        };
+
+        return FetchUtil.fetchWrapper( CONTROL_TESTS_LIST_URL,
+            null, onSuccess, null );
+    };
+};
+
+const deserializeTrainigTests = ( response ) => {
+    return response.map( ( test ) => {
+        return {
+            testId: test.testId,
+            testName: test.testName,
+        };
+    });
+};
+
+const deserializeControlTests = ( response ) => {
+    return response.map( ( test ) => {
+        return {
+            testId: test.testId,
+            testName: test.testName,
+        };
+    });
 };

@@ -40,6 +40,8 @@ if (project.env === 'development') {
   // rendering, you'll want to remove this middleware.
   app.use('*', function (req, res, next) {
     const filename = path.join(compiler.outputPath, 'index.html')
+    // res.header("Access-Control-Allow-Origin", "*");
+    // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     compiler.outputFileSystem.readFile(filename, (err, result) => {
       if (err) {
         return next(err)

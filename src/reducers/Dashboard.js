@@ -1,14 +1,19 @@
-import {VARIANTS_LIST_CHANGED} from '../constants/ActionTypes';
+import {TRAINING_TESTS_LIST_CHANGED, CONTROL_TESTS_LIST_CHANGED} from '../constants/ActionTypes';
 
 const initialState = {
-    variants: [],
+    trainingTests: [],
+    controlTests: [],
 };
 
 const dashboard = ( state = initialState, action ) => {
     switch ( action.type ) {
-        case VARIANTS_LIST_CHANGED:
+        case TRAINING_TESTS_LIST_CHANGED:
             return Object.assign({}, state, {
-                variants: action.variants,
+                trainingTests: action.tests,
+            } );
+        case CONTROL_TESTS_LIST_CHANGED:
+            return Object.assign({}, state, {
+                controlTests: action.tests,
             } );
         default:
             return state;

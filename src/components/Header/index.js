@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import SvgIcon from '@material-ui/core/SvgIcon';
+import { Link } from 'react-router-dom';
 
 const title = 'Система автоматизовної генерації тестів';
 
@@ -100,8 +101,9 @@ class Header extends Component {
         return <AppBar position="static">
             <Toolbar>
             <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                <HomeIcon
-                    onClick={this.onDashboardIconClick} />
+                <Link to={'/dashboard'}>
+                    <HomeIcon/>
+                </Link>
             </IconButton>
             <Typography variant="title" color="inherit" className={classes.flex}>
                 {title}

@@ -1,12 +1,16 @@
 
 const initialState = () => {
-    const userName = window.localStorage.userName;
+    const username = window.localStorage.username;
     const role = window.localStorage.role;
+    const login = window.localStorage.login;
+    const password = window.localStorage.password;
 
     return {
-        name: userName,
+        name: username,
         role: role,
-        loggedIn: Boolean(userName),
+        loggedIn: Boolean(username),
+        login: login,
+        password: password,
     };
 };
 

@@ -5,14 +5,18 @@ import * as DashboardActions from '../actions/DashboardActions';
 
 const mapStateToProps = ( state ) => {
     return ( {
-        variants: state.dashboard.variants,
+        trainingTests: state.dashboard.trainingTests,
+        controlTests: state.dashboard.controlTests,
     } );
 };
 
 const mapDispatchToProps = ( dispatch, ownProps ) => {
     return {
-        fetchVariantsList: () => {
-            dispatch( DashboardActions.fetchVariants() );
+        fetchTrainingTests: () => {
+            dispatch( DashboardActions.fetchTrainingTests() );
+        },
+        fetchControlTests: () => {
+            dispatch( DashboardActions.fetchControlTests() );
         },
     };
 };

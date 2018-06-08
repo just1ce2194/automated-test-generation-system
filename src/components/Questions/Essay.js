@@ -1,5 +1,10 @@
 import React from 'react';
 import TinyMCE from 'react-tinymce';
+import Switch from '@material-ui/core/Switch';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = ( theme ) => ({
+  });
 
 const {Component} = React;
 
@@ -8,28 +13,48 @@ class Essay extends Component {
         super( props );
 
         this.onAnswerChange = this.onAnswerChange.bind(this);
+        this.onSwithChange = this.onSwithChange.bind(this);
+
+        this.state = {
+            isRich: false,
+            value: '',
+        };
     }
 
-    onAnswerChange( event ) {
-        this.props.onAnswerChange( event.target.getContent() );
+    onAnswerChange( value ) {
+        this.props.onAnswerChange( value );
+        this.setState( {value: value} );
+    }
+    onSwithChange() {
+        this.setState( {isRich: !this.state.isRich} );
     }
 
     render() {
         const question = this.props.question;
-        const label = question.preamble;
+        const label = <span><b>{ this.props.index + '. ' }</b>{ `${question.preamble}` }</span>;
 
-        return <div>
-            {label}
-            <br/> <br/>
-            <TinyMCE
+        const tinymceEditor = () => <TinyMCE
                 config={{
                 plugins: 'autolink link image lists print preview',
                 toolbar: 'undo redo | bold italic | alignleft aligncenter alignright'}}
-                onChange={this.onAnswerChange}
-            />
+                onChange={(e) => this.onAnswerChange(e.target.getContent())}
+                content={this.state.value}
+            />;
+
+        const textArea = () => <textarea
+            value={this.state.value}
+            onChange={(e) => this.onAnswerChange(e.target.value)}
+            rows={4} cols={50}/>;
+
+        return <div>
+            <div>{label}</div>
+            <Switch checked={this.state.isRich} onChange={this.onSwithChange} />
+            <div>
+                { this.state.isRich ? tinymceEditor() : textArea() }
+            </div>
         </div>;
     }
 }
 
-export default Essay;
+export default withStyles(styles)( Essay );
 

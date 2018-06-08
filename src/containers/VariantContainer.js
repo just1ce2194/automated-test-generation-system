@@ -15,8 +15,14 @@ const mapDispatchToProps = ( dispatch, ownProps ) => {
         fetchVariant: () => {
             dispatch( VariantActions.fetchVariant(testId) );
         },
+        clearVariant: () => {
+            dispatch( VariantActions.clearVariant() );
+        },
         onAnswerChange: ( questionId, answer ) => {
             dispatch( VariantActions.answerChanged( questionId, answer ) );
+        },
+        submitVariant: ( variant ) => {
+            dispatch( VariantActions.submitVariant( variant ) );
         },
     };
 };

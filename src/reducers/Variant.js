@@ -1,11 +1,12 @@
-import {VARIANT_CHANGED, ANSWER_CHANGED} from '../constants/ActionTypes';
+import {VARIANT_CHANGED, ANSWER_CHANGED, VARIANT_CLEARED, SET_RESULT} from '../constants/ActionTypes';
 
 const initialState = {
     mark: 0,
     name: '',
-    preamble: '',
     questions: [],
+    id: null,
     answers: {},
+    result: {},
 };
 
 const variant = ( state = initialState, action ) => {
@@ -14,15 +15,22 @@ const variant = ( state = initialState, action ) => {
             return Object.assign({}, state, {
                 mark: action.variant.mark,
                 name: action.variant.name,
-                preamble: action.variant.preamble,
+                id: action.variant.id,
                 questions: action.variant.questions,
                 answers: {},
+                result: {},
             });
         case ANSWER_CHANGED:
             let answers = state.answers;
             answers[action.questionId] = action.answer;
             return Object.assign({}, state, {
                 answers: answers,
+            });
+        case VARIANT_CLEARED:
+            return initialState;
+        case SET_RESULT:
+            return Object.assign({}, state, {
+                result: action.result,
             });
         default:
             return state;

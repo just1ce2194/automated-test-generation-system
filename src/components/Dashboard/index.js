@@ -12,41 +12,69 @@ import { Link } from 'react-router-dom';
 
 const {Component} = React;
 
-
 class Dashboard extends Component {
     constructor( props ) {
         super( props );
     }
 
-    componentDidMount() {
-        this.props.fetchVariantsList();
+    componentWillMount() {
+        this.props.fetchTrainingTests();
+        this.props.fetchControlTests();
     }
 
     render() {
-        const variants = this.props.variants;
+        const {trainingTests, controlTests} = this.props;
 
         return <div className="contentWrapper">
             <div className="dashboard">
-                <Typography variant="title">
-                    Доступні тести:
-                </Typography>
-                <List component="nav">
-                    {
-                        variants.map( ( variant, index ) => {
-                            return <Link
-                                to={'/variant/' + variant}
-                                key={index}>
-                                <ListItem
-                                    button>
-                                    <ListItemIcon>
-                                        <InboxIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary={variant} />
-                                </ListItem>
-                                </Link>;
-                        } )
-                    }
-                </List>
+                {
+                    trainingTests.length !==0 ? <div>
+                        <Typography variant="title">
+                            Тренувальні тести:
+                        </Typography>
+                        <List component="nav">
+                            {
+                                trainingTests.map( ( test ) => {
+                                    return <Link
+                                        to={'/variant/' + test.testId}
+                                        key={test.testId}>
+                                        <ListItem
+                                            button>
+                                            <ListItemIcon>
+                                                <InboxIcon />
+                                            </ListItemIcon>
+                                            <ListItemText primary={test.testName} />
+                                        </ListItem>
+                                    </Link>;
+                                } )
+                            }
+                        </List>
+                    </div> : null
+                }
+                {
+                    controlTests.length !==0 ? <div>
+                        <Typography variant="title">
+                            Контрольні тести:
+                        </Typography>
+                        <List component="nav">
+                            {
+                                controlTests.map( ( test ) => {
+                                    return <Link
+                                        to={'/variant/' + test.testId}
+                                        key={test.testId}>
+                                        <ListItem
+                                            button>
+                                            <ListItemIcon>
+                                                <InboxIcon />
+                                            </ListItemIcon>
+                                            <ListItemText primary={test.testName} />
+                                        </ListItem>
+                                    </Link>;
+                                } )
+                            }
+                        </List>
+                    </div> : null
+                }
             </div>
         </div>;
     }

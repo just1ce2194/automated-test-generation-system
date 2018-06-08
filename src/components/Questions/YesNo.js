@@ -8,33 +8,25 @@ const {Component} = React;
 class YesNo extends Component {
     constructor( props ) {
         super( props );
-
-        this.onAnswerChange = this.onAnswerChange.bind(this);
-    }
-
-    onAnswerChange( event ) {
-        const value = event.target.value;
-        this.props.onAnswerChange( value );
     }
 
     render() {
         const question = this.props.question;
 
-        const label = <span>{ question.preamble }</span>;
+        const label = <span><b>{ this.props.index + '. '}</b>{ `${question.preamble}` }</span>;
 
         const checkBoxes = <FormGroup row> {
-            question.variantsOfAnswers.map( ( item, index ) => {
+            question.questionAnswers.map( ( answer, index ) => {
                 return <FormControlLabel
-                    key={index}
+                    key={answer.answerId}
                     control={
                         <Checkbox
-                        checked={this.props.answer === item}
-                        onChange={this.onAnswerChange}
-                        value={item}
-                        color='primary'
+                            checked={this.props.answer === answer.answerId}
+                            onChange={() => this.props.onAnswerChange( answer.answerId )}
+                            color='primary'
                         />
                     }
-                    label={item}
+                    label={`${answer.answer}`}
                     />;
             } ) } </FormGroup>;
 

@@ -12,8 +12,7 @@ class CheckboxQuestion extends Component {
         this.onAnswerChange = this.onAnswerChange.bind(this);
     }
 
-    onAnswerChange( event ) {
-        const value = event.target.value;
+    onAnswerChange( value ) {
         let answer = this.props.answer;
 
         if ( answer ) {
@@ -31,24 +30,23 @@ class CheckboxQuestion extends Component {
     render() {
         const question = this.props.question;
 
-        const label = <span>{ question.preamble }</span>;
+        const label = <span><b>{ this.props.index + '. ' }</b>{ `${question.preamble}` }</span>;
 
         const checkBoxes = <FormGroup row> {
-            question.variantsOfAnswers.map( ( item, index ) => {
+            question.questionAnswers.map( ( answer, index ) => {
                 const isChecked = this.props.answer &&
-                    this.props.answer.indexOf( item ) >= 0;
+                    this.props.answer.indexOf( answer.answerId ) >= 0;
 
                 return <FormControlLabel
-                    key={index}
+                    key={answer.answerId}
                     control={
                         <Checkbox
                             checked={isChecked}
-                            onChange={this.onAnswerChange}
-                            value={item}
+                            onChange={() => this.onAnswerChange( answer.answerId )}
                             color='primary'
-                            />
+                        />
                     }
-                    label={item}
+                    label={`${answer.answer}`}
                     />;
             } ) } </FormGroup>;
 
