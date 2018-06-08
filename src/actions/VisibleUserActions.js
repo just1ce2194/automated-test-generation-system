@@ -1,6 +1,9 @@
 import FetchUtil from '../utils/FetchUtil';
+import constants from '../constants';
 
-const LOGIN_URL = 'http://192.168.0.102:8082/users/me';
+const domain = constants.domain;
+
+const LOGIN_URL = domain + '/users/me';
 
 export const logOut = () => {
     localStorage.removeItem('username');

@@ -1,10 +1,8 @@
 import React from 'react';
 import TinyMCE from 'react-tinymce';
 import Switch from '@material-ui/core/Switch';
-import { withStyles } from '@material-ui/core/styles';
-
-const styles = ( theme ) => ({
-  });
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const {Component} = React;
 
@@ -56,5 +54,5 @@ class Essay extends Component {
     }
 }
 
-export default withStyles(styles)( Essay );
+export default Essay;
 

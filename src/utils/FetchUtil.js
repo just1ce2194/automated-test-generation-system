@@ -11,6 +11,17 @@ const getHeaders = () =>{
     };
 };
 
+const getUploadHeaders = () =>{
+    const login = window.localStorage.login;
+    const password = window.localStorage.password;
+
+    return {
+        'Authorization': 'Basic ' + btoa( login + ':' + password ),
+        'Accept': 'application/json',
+    };
+};
+
+
 const fetchWrapper = (url, data = {}, onSuccess, onError,
     fetchStarted, fetchDone, type = 'GET') => {
         fetchStarted && fetchStarted();
@@ -50,7 +61,7 @@ const uploadFile = (url, file = {}, onSuccess, onError,
 
         fetch( url, {
                 body: data,
-                headers: getHeaders(),
+                headers: getUploadHeaders(),
                 method: 'post',
             })
             .then( ( response ) => {

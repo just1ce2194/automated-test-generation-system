@@ -1,8 +1,11 @@
 import * as types from '../constants/ActionTypes';
 import FetchUtil from '../utils/FetchUtil';
+import constants from '../constants';
 
-const VARIANT_URL = 'http://192.168.0.102:8082/api/variants/getVariant';
-const VARIANT_SUBMIT_URL = 'http://192.168.0.102:8082/api/variants/check';
+const domain = constants.domain;
+
+const VARIANT_URL = domain + '/api/variants/getVariant';
+const VARIANT_SUBMIT_URL = domain + '/api/variants/check';
 
 const generateFetchVariantUrl = ( testId ) => {
     return `${VARIANT_URL}?testId=${testId}`;

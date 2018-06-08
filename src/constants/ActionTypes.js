@@ -3,6 +3,7 @@
 // ------------------------------------
 export const TRAINING_TESTS_LIST_CHANGED = 'TRAINING_TESTS_LIST_CHANGED';
 export const CONTROL_TESTS_LIST_CHANGED = 'CONTROL_TESTS_LIST_CHANGED';
+export const CONFIGS_CHANGED = 'CONFIGS_CHANGED';
 
 // ------------------------------------
 // Variant actions
