@@ -7,10 +7,19 @@
 
 .variant {
     padding-top: 30px;
+    position: relative;
 }
 
 .submitButton {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.timer {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    z-index: 9999;
+    background-color: #F4F3F0;
 }
