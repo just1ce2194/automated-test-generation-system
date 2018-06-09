@@ -4,8 +4,13 @@ import Divider from '@material-ui/core/Divider';
 import {RadioButton, YesNo, CheckBox, Essay} from '../Questions';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
+import FixedLayout from '../FixedLayout';
+import ReactCountdownClock from 'react-countdown-clock';
 
 import './styles.scss';
+
+const TIME_FOR_VARIANT = 1800;
 
 const {Component} = React;
 
@@ -99,7 +104,7 @@ class Variant extends Component {
             </div>;
         });
 
-        return <div className="variant">
+        return <div className="variant" >
             {label}
             <div className="questionList">
                 { renderedQuestions }
@@ -108,6 +113,14 @@ class Variant extends Component {
                 <Button variant="contained" color="primary" onClick={this.onVariantSubmit}>
                     Відправити рішення
                 </Button>
+            </div>
+            <div className="timer">
+                <ReactCountdownClock seconds={TIME_FOR_VARIANT}
+                        color="#000"
+                        alpha={0.6}
+                        size={100}
+                        onComplete={this.onVariantSubmit}
+                />
             </div>
         </div>;
     }

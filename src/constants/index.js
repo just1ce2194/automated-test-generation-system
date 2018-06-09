@@ -1,3 +1,3 @@
 export default {
-    domain: 'http://ua-dstorozh-l:8082',
+    domain: 'http://34.214.53.65:8080/test-generation-system',
 };
