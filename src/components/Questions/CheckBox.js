@@ -1,7 +1,7 @@
 import React from 'react';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Radio from '@material-ui/core/Radio';
+import CheckBox from '@material-ui/core/Checkbox';
 
 const {Component} = React;
 
@@ -40,7 +40,7 @@ class CheckboxQuestion extends Component {
                 return <FormControlLabel
                     key={answer.answerId}
                     control={
-                        <Radio
+                        <CheckBox
                             checked={isChecked}
                             onChange={() => this.onAnswerChange( answer.answerId )}
                             color='primary'
