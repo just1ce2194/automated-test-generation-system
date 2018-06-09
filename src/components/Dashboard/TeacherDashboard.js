@@ -23,6 +23,10 @@ class TeacherDashboard extends Component {
         this.state = {
             file: null,
             config: '',
+            students: [],
+            tests: [],
+            testForStudentId: '',
+            studentForTestId: '',
         };
 
         this.onChooseFileButtonClick = this.onChooseFileButtonClick.bind(this);
@@ -32,14 +36,32 @@ class TeacherDashboard extends Component {
         this.renderConfigs = this.renderConfigs.bind(this);
         this.onConfigChange = this.onConfigChange.bind(this);
         this.onSubmitConfigSend = this.onSubmitConfigSend.bind(this);
+        this.renderSetTestForStudentMenu = this.renderSetTestForStudentMenu.bind(this);
+        this.onSetTestForStudent = this.onSetTestForStudent.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchConfigs();
+        this.props.fetchTestsForStudents( (tests) => this.setState({tests: tests} ));
+        this.props.fetchStudents( (students) => this.setState({students: students} ) );
     }
 
     onChooseFileButtonClick() {
         document.getElementById('config-file-input').click();
+    }
+
+    onSetTestForStudent() {
+        const testId = this.state.testForStudentId;
+        const studentId = this.state.studentForTestId;
+
+        const onSuccess = () => {
+            this.setState({
+                testForStudentId: '',
+                studentForTestId: '',
+            });
+        };
+
+        this.props.setTestForStudent( testId, studentId, onSuccess );
     }
 
     onFileChange( event ) {
@@ -64,6 +86,9 @@ class TeacherDashboard extends Component {
                 config: '',
             });
             this.props.fetchConfigs();
+
+            this.props.fetchTestsForStudents( (tests) => this.setState({tests: tests} ));
+            this.props.fetchStudents( (students) => this.setState({students: students} ) );
         };
 
         this.props.sendConfigForTestGeneration( config, onSuccess );
@@ -111,6 +136,52 @@ class TeacherDashboard extends Component {
             </ExpansionPanelDetails>
         </ExpansionPanel>;
     }
+    
+
+    renderSetTestForStudentMenu() {
+        return <ExpansionPanel>
+            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography>Назначити тест студентам</Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+                <div>
+                    <TextField
+                        select
+                        helperText="Виберіть студента"
+                        value={this.state.studentForTestId}
+                        onChange={(event) => this.setState({studentForTestId: event.target.value}) }
+                        >
+                        {
+                            this.state.students.map( ( student ) => (
+                                <MenuItem key={student.email} value={student.userId}>
+                                    {student.email}
+                                </MenuItem>
+                            ))
+                        }
+                    </TextField>
+                    <TextField
+                            select
+                            helperText="Виберіть тест"
+                            value={this.state.testForStudentId}
+                            onChange={(event) => this.setState({testForStudentId: event.target.value}) }
+                            >
+                            {
+                                this.state.tests.map( ( test ) => (
+                                    <MenuItem key={test.testId} value={test.testId}>
+                                        {test.testName}
+                                    </MenuItem>
+                                ))
+                            }
+                        </TextField>
+                </div>
+                <div style={{paddingLeft: 20}}>
+                    <Button variant="contained" color="primary" onClick={this.onSetTestForStudent}>
+                        Назначити
+                    </Button>
+                </div>
+            </ExpansionPanelDetails>
+        </ExpansionPanel>;
+    }
 
     renderConfigs() {
         const configs = this.props.configs;
@@ -151,6 +222,7 @@ class TeacherDashboard extends Component {
             <div className="dashboard">
                 { this.renderUploadConfigMenu() }
                 { this.renderConfigs() }
+                { this.renderSetTestForStudentMenu() }
                 <input id="config-file-input" type="file" style={{display: 'none'}}
                     onChange={this.onFileChange}/>
             </div>

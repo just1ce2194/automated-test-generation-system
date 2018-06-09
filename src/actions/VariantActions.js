@@ -4,8 +4,8 @@ import constants from '../constants';
 
 const domain = constants.domain;
 
-const VARIANT_URL = domain + '/api/variants/getVariant';
-const VARIANT_SUBMIT_URL = domain + '/api/variants/check';
+const VARIANT_URL = domain + '/variants';
+const VARIANT_SUBMIT_URL = domain + '/variants/check';
 
 const generateFetchVariantUrl = ( testId ) => {
     return `${VARIANT_URL}?testId=${testId}`;

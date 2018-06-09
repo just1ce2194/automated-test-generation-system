@@ -2,11 +2,18 @@ import * as types from '../constants/ActionTypes';
 import FetchUtil from '../utils/FetchUtil';
 import constants from '../constants';
 
-const domain = constants.domain;
+const studentRole = 'STUDENT';
 
-const TRAINING_TESTS_LIST_URL = domain + '/api/tests/training';
-const CONTROL_TESTS_LIST_URL = domain + '/api/tests/control';
-const CONFIGS_URL = domain + '/api/configurations';
+const domain = constants.domain;
+const CONTROL_TYPE = 'control';
+const TRAINING_TYPE = 'training';
+
+const TEST_LIST_URL = domain + '/tests';
+const CONFIGS_URL = domain + '/configurations';
+
+const STUDENTS_URL = domain + '/users?role=' + studentRole;
+const TESTS_FOR_STUDENTS_URL = domain + '/tests?type=' + CONTROL_TYPE;
+
 
 export const trainingTestsListChanged = ( tests ) => {
     return {
@@ -33,10 +40,13 @@ export const fetchTrainingTests = () => {
     return ( dispatch ) => {
         const onSuccess = ( response ) => {
             const tests = deserializeTrainigTests( response );
+
             dispatch(trainingTestsListChanged( tests ));
         };
 
-        return FetchUtil.fetchWrapper( TRAINING_TESTS_LIST_URL,
+        const url = TEST_LIST_URL + `?type=${TRAINING_TYPE}`;
+        
+        return FetchUtil.fetchWrapper( url,
             null, onSuccess, null );
     };
 };
@@ -60,7 +70,9 @@ export const fetchControlTests = () => {
             dispatch(controlTestsListChanged( tests ));
         };
 
-        return FetchUtil.fetchWrapper( CONTROL_TESTS_LIST_URL,
+        const url = TEST_LIST_URL + `?type=${CONTROL_TYPE}`;
+
+        return FetchUtil.fetchWrapper( url,
             null, onSuccess, null );
     };
 };
@@ -79,6 +91,18 @@ export const uploadConfig = ( file, onSuccess, onError ) => {
     };
 };
 
+export const setTestForStudent = ( testId, studentId, onSuccess ) => {
+    return ( dispatch ) => {
+        const data = {
+            testId: testId,
+            userIds: [studentId],
+        };
+
+        return FetchUtil.fetchWrapper( TEST_LIST_URL,
+            data, onSuccess, null, null, null, 'POST' );
+    };
+};
+
 export const sendConfigForTestGeneration = ( configId, onSuccess ) => {
     return ( dispatch ) => {
         const onSuccess1 = ( response ) => {
@@ -92,6 +116,19 @@ export const sendConfigForTestGeneration = ( configId, onSuccess ) => {
     };
 };
 
+export const fetchStudents = ( onSuccess ) => {
+    return ( dispatch ) => {
+        return FetchUtil.fetchWrapper( STUDENTS_URL,
+            null, onSuccess );
+    };
+};
+
+export const fetchTests = ( onSuccess ) => {
+    return ( dispatch ) => {
+        return FetchUtil.fetchWrapper( TESTS_FOR_STUDENTS_URL,
+            null, onSuccess );
+    };
+};
 
 const deserializeTrainigTests = ( response ) => {
     return response.map( ( test ) => {

@@ -36,7 +36,7 @@ const fetchWrapper = (url, data = {}, onSuccess, onError,
         }
         fetch( url, params )
             .then( ( response ) => {
-                if ( response.ok ) {
+                if ( response.ok && type !== 'POST' ) {
                     return response.json();
                 } else if ( !response.ok && onError ) {
                     onError( error);

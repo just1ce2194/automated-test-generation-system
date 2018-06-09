@@ -29,6 +29,15 @@ const mapDispatchToProps = ( dispatch, ownProps ) => {
         sendConfigForTestGeneration: ( configId, onSuccess ) => {
             dispatch( DashboardActions.sendConfigForTestGeneration( configId, onSuccess ) );
         },
+        fetchStudents: ( onSuccess ) => {
+            dispatch( DashboardActions.fetchStudents(onSuccess) );
+        },
+        fetchTestsForStudents: ( onSuccess ) => {
+            dispatch( DashboardActions.fetchTests(onSuccess) );
+        },
+        setTestForStudent: ( testId, studentId, onSuccess ) => {
+            dispatch( DashboardActions.setTestForStudent(testId, studentId, onSuccess) );
+        },
     };
 };
 

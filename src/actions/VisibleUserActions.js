@@ -3,7 +3,7 @@ import constants from '../constants';
 
 const domain = constants.domain;
 
-const LOGIN_URL = domain + '/users/me';
+const LOGIN_URL = domain + '/users/';
 
 export const logOut = () => {
     localStorage.removeItem('username');
