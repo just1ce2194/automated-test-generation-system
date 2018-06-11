@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store';
-import {DashboardPage, VariantPage, LoginPage} from './pages';
+import {DashboardPage, VariantPage, LoginPage, RegistrationPage} from './pages';
 import {Provider} from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 import styles from './styles.scss';
@@ -21,6 +21,7 @@ const routes = (
         <Route path='/variant/:id' component={VariantPage} />
         <Route path='/dashboard' component={DashboardPage} />
         <Route path='/login' component={LoginPage} />
+        <Route path='/registration' component={RegistrationPage} />
     </LoginControl>
 );
 

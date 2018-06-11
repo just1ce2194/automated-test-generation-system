@@ -14,7 +14,7 @@ import Menu from '@material-ui/core/Menu';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import { Link } from 'react-router-dom';
 
-const title = 'Система автоматизовної генерації тестів';
+const title = 'Система дистанційного навчання та автоматизованої генерації тестів';
 
 const {Component} = React;
 

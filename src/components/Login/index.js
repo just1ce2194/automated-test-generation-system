@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 
 import styles from './styles.scss';
 
@@ -59,9 +60,14 @@ class Login extends Component {
                     type="password"/>
             </div>
             <div>
-            <Button variant="outlined" color="primary" onClick={this.handleLogIn}>
-                Ввійти
-            </Button>
+                <Button variant="outlined" color="primary" onClick={this.handleLogIn}>
+                    Ввійти
+                </Button>
+                <Link to={'/registration'}>
+                    <Button variant="outlined" color="primary">
+                        Зареєструватися
+                    </Button>
+                </Link>
             </div>
         </div>;
     }

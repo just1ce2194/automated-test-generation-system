@@ -24,12 +24,17 @@ class LoginControl extends Component {
     render() {
         const {loggedIn} = this.props;
         const isLoginUrl = this.props.location.pathname === '/login';
+        const isRegistrationUrl = this.props.location.pathname === '/registration';
+
         if ( loggedIn && isLoginUrl ) {
             return <div className="loginContainer">
                 Logged in. Redirecting...
                 </div>;
         }
         if ( loggedIn || isLoginUrl ) {
+            return this.props.children;
+        }
+        if ( !loggedIn && isRegistrationUrl ) {
             return this.props.children;
         }
 

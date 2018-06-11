@@ -10,6 +10,7 @@ import roles from '../../constants/Roles';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
+import Switch from '@material-ui/core/Switch';
 
 const {Component} = React;
 
@@ -66,9 +67,18 @@ class AdminDashboard extends Component {
             return user;
         } );
 
-        this.setState( { users: users } )
+        this.setState({users: users});
     };
+    onActiveChanged( userId ) {
+        const users = this.state.users.map( user => {
+            if ( user.userId === userId  ) {
+                user.isActive =  !user.isActive;
+            }
+            return user;
+        } );
 
+        this.setState({users: users});
+    }
     render() {
         const users = this.state.users;
 
@@ -117,7 +127,11 @@ class AdminDashboard extends Component {
                     <CustomTableCell><span>{user.surname}</span></CustomTableCell>
                     <CustomTableCell><span>{user.username}</span></CustomTableCell>
                     <CustomTableCell><span>{user.email}</span></CustomTableCell>
-                    <CustomTableCell><span>{user.isActive}</span></CustomTableCell>
+                    <CustomTableCell>
+                        <Switch checked={user.isActive}
+                            onChange={(e) => this.onActiveChanged(user.userId)}
+                        />
+                    </CustomTableCell>
                     <CustomTableCell>{renderRole(user)}</CustomTableCell>
                     <CustomTableCell>
                         <Button variant="contained" onClick={ (e) => this.onUpdateUser( user ) }>

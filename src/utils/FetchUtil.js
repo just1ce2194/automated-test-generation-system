@@ -55,6 +55,7 @@ const fetchWrapper = (url, data = {}, onSuccess, onError,
             } );
 };
 
+
 const uploadFile = (url, file = {}, onSuccess, onError,
     fetchStarted, fetchDone) => {
         fetchStarted && fetchStarted();

@@ -4,6 +4,8 @@ import constants from '../constants';
 const domain = constants.domain;
 
 const LOGIN_URL = domain + '/users/';
+const USERS_URL = domain + '/users';
+
 
 export const logOut = () => {
     localStorage.removeItem('username');
@@ -29,5 +31,23 @@ export const logIn = ( login, password ) => {
         };
 
         return FetchUtil.fetchWrapper( LOGIN_URL, null, onSuccess, onError );
+    };
+};
+
+export const registration = (user, onSuccess) => {
+    return ( dispatch ) => {
+        const onError = ( response ) => {
+            logOut();
+        };
+        const data = {
+            username: user.username,
+            password: user.password,
+            email: user.email,
+            name: user.name,
+            surname: user.surname,
+        };
+
+        return FetchUtil.fetchWrapper( USERS_URL, data,
+            onSuccess, onSuccess, null, null, 'POST' );
     };
 };
