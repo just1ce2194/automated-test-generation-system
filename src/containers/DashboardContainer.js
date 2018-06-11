@@ -1,19 +1,34 @@
 import {Dashboard} from '../components';
 import {connect} from 'react-redux';
+import roles from '../constants/Roles';
 
 import * as DashboardActions from '../actions/DashboardActions';
+import * as AdminDashboardActions from '../actions/AdminDashboardActions';
 
 const mapStateToProps = ( state ) => {
-    return ( {
-        trainingTests: state.dashboard.trainingTests,
-        controlTests: state.dashboard.controlTests,
-        userRole: state.visibleUser.role,
-        configs: state.dashboard.configs,
-    } );
+    const props = {};
+
+    props.userRole = state.visibleUser.role;
+
+    if ( state.visibleUser.role === roles.admin ) {
+        props.users = state.adminDashboard.users;
+    } else {
+        props.trainingTests = state.dashboard.trainingTests;
+        props.controlTests = state.dashboard.controlTests;
+        props.configs = state.dashboard.configs;
+    };
+
+    return props;
 };
 
 const mapDispatchToProps = ( dispatch, ownProps ) => {
     return {
+        fetchUsers: () => {
+            dispatch( AdminDashboardActions.fetchUsers() );
+        },
+        updateUser: (user, onSuccess) => {
+            dispatch( AdminDashboardActions.updateUser(user, onSuccess ) );
+        },
         fetchTrainingTests: () => {
             dispatch( DashboardActions.fetchTrainingTests() );
         },

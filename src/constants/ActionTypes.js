@@ -20,3 +20,10 @@ export const LOGGED_IN = 'LOGGED_IN';
 export const LOGGED_OUT = 'LOGGED_OUT';
 
 
+// ------------------------------------
+// Admin dashboard actions
+// ------------------------------------
+export const USERS_CHANGED = 'USERS_CHANGED';
+
+
+
