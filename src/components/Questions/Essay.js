@@ -28,9 +28,16 @@ class Essay extends Component {
         this.setState( {isRich: !this.state.isRich} );
     }
 
+    componentDidMount(){
+
+    }
+
+
     render() {
         const question = this.props.question;
-        const label = <span><b>{ this.props.index + '. ' }</b><span>{ `${question.preamble}` }</span></span>;
+
+        const createMarkup = () => { return {__html: this.props.index + '. ' + question.preamble}; };
+        
 
         const tinymceEditor = () => <TinyMCE
                 config={{
@@ -46,7 +53,7 @@ class Essay extends Component {
             rows={4} cols={50}/>;
 
         return <div>
-            <div>{label}</div>
+            <span dangerouslySetInnerHTML={createMarkup()} />
             <Switch checked={this.state.isRich} onChange={this.onSwithChange} />
             <div>
                 { this.state.isRich ? tinymceEditor() : textArea() }

@@ -1,3 +1,3 @@
 export default {
-    domain: 'http://172.31.0.41:8080/test-generation-system/api',
+    domain: 'http://34.220.183.70:8080/test-generation-system/api',
 };

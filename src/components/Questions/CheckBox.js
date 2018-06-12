@@ -30,7 +30,7 @@ class CheckboxQuestion extends Component {
     render() {
         const question = this.props.question;
 
-        const label = <span><b>{ this.props.index + '. ' }</b>{ `${question.preamble}` }</span>;
+        const createMarkup = () => { return {__html: this.props.index + '. ' + question.preamble}; };
 
         const checkBoxes = <FormGroup row> {
             question.questionAnswers.map( ( answer, index ) => {
@@ -51,7 +51,7 @@ class CheckboxQuestion extends Component {
             } ) } </FormGroup>;
 
         return <div>
-            { label }
+             <span dangerouslySetInnerHTML={createMarkup()} />
             { checkBoxes }
         </div>;
     }
