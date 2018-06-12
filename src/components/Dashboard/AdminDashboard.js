@@ -135,7 +135,7 @@ class AdminDashboard extends Component {
                     <CustomTableCell>{renderRole(user)}</CustomTableCell>
                     <CustomTableCell>
                         <Button variant="contained" onClick={ (e) => this.onUpdateUser( user ) }>
-                         Назначити
+                         Змінити
                         </Button></CustomTableCell>
                     </TableRow>
                 );

@@ -4,6 +4,7 @@ import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
+
 const {Component} = React;
 
 class Essay extends Component {
@@ -29,7 +30,7 @@ class Essay extends Component {
 
     render() {
         const question = this.props.question;
-        const label = <span><b>{ this.props.index + '. ' }</b>{ `${question.preamble}` }</span>;
+        const label = <span><b>{ this.props.index + '. ' }</b><span>{ `${question.preamble}` }</span></span>;
 
         const tinymceEditor = () => <TinyMCE
                 config={{
